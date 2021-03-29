@@ -10,7 +10,7 @@ def loss_function(weight, x, y):
     m = len(y)
 
     predicted_values = predict(x, weight)
-    loss = (1 / (2 * m)) * np.sum((predicted_values - y) ** 2)
+    loss = (1 /  m) * np.sum((predicted_values - y) ** 2)
     return loss
 
 
@@ -23,7 +23,7 @@ def gradient_descent(x, y, weight, alpha=0.01,
     for iteration in range(iterations):
         prediction = predict(x, weight)
         old_weight = weight
-        weight = old_weight - (alpha / m) * np.dot(x.T, prediction - y)
+        weight = old_weight - (2 * alpha / m) * np.dot(x.T, prediction - y)
 
         weight_history[iteration, :] = weight.T
         loss_history[iteration] = loss_function(weight, x, y)
@@ -51,7 +51,7 @@ iterations = 10000
 weight = np.random.randn(2, 1)
 
 #data_train = np.genfromtxt ('lab_1_train.csv', delimiter=',')[1:]
-raw_data_train = urlopen("https://raw.githubusercontent.com/golubenkonick/ML_lab1/main/lab_1_train.csv")
+raw_data_train = urlopen("https://raw.githubusercontent.com/wyd33v/ML_Lab1/main/lab_1_test.csv")
 data_train = np.genfromtxt(raw_data_train, delimiter=",")[1:]
 x_train = data_train[:, [1]]
 X_train = np.c_[np.ones((len(x_train), 1)), x_train]
@@ -60,7 +60,7 @@ plt.scatter(x_train, y_train, marker='.')
 plt.show()
 
 #data_test = np.genfromtxt('lab_1_test.csv', delimiter=',')[1:]
-raw_data_test = urlopen("https://raw.githubusercontent.com/golubenkonick/ML_lab1/main/lab_1_test.csv")
+raw_data_test = urlopen("https://raw.githubusercontent.com/wyd33v/ML_Lab1/main/lab_1_train.csv")
 data_test = np.genfromtxt(raw_data_test, delimiter=",")[1:]
 x_test = data_test[:, [1]]
 X_test = np.c_[np.ones((len(x_test), 1)), x_test]
