@@ -50,6 +50,7 @@ tolerance = 0.0001
 iterations = 10000
 weight = np.random.randn(2, 1)
 
+
 #data_train = np.genfromtxt ('lab_1_train.csv', delimiter=',')[1:]
 raw_data_train = urlopen("https://raw.githubusercontent.com/wyd33v/ML_Lab1/main/lab_1_test.csv")
 data_train = np.genfromtxt(raw_data_train, delimiter=",")[1:]
